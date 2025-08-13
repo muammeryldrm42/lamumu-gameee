@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Lamumu: İnek Geliştirici Oyunu</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #0f0;
+      font-family: 'Courier New', monospace;
+      padding: 20px;
+    }
+    #terminal {
+      border: 2px solid #0f0;
+      padding: 20px;
+      height: 350px;
+      overflow-y: auto;
+      background-color: #000;
+    }
+    .blink {
+      animation: blink 1s steps(2, start) infinite;
+    }
+    @keyframes blink {
+      to { visibility: hidden; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Lamumu OS - İnek Geliştirici Terminali 🐮</h1>
+  <div id="terminal"></div>
+
+  <script>
+    const terminal = document.getElementById('terminal');
+
+    const lines = [
+      "> lamumu@cowOS:~$ Merhaba!",
+      "> lamumu@cowOS:~$ Lamumu oyun başlatılıyor...",
+      "MooMoo Engine v0.1 yüklendi.",
+      "İnek kod yazmayı deniyor...",
+      "Hata: Syntax MooError - Hay çok fazla!",
+      "İnek: 'Ben artık indie geliştiriciyim!'",
+      "GitHub'a yükleniyor... README eksik ama ruhumuz yeter.",
+      "Oyun bitti. Ama inek hala kod yazıyor. 🐄"
+    ];
+
+    let i = 0;
+    function typeLine() {
+      if (i < lines.length) {
+        const line = document.createElement('div');
+        line.textContent = lines[i];
+        terminal.appendChild(line);
+        terminal.scrollTop = terminal.scrollHeight;
+        i++;
+        setTimeout(typeLine, 1000);
+      } else {
+        const cursor = document.createElement('span');
+        cursor.className = 'blink';
+        cursor.textContent = '█';
+        terminal.appendChild(cursor);
+      }
+    }
+
+    typeLine();
+  </script>
+</body>
+</html>
